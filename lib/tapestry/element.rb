@@ -18,9 +18,13 @@ module Tapestry
       define_method(element) do |*signature, &block|
         puts "(1) signature: #{signature}"
         identifier, signature = parse_signature(signature)
+
+        context = context_from_signature(signature, &block)
+        puts "(1.5) context: #{context}"
+
         puts "(2) identifier: #{identifier}"
         puts "(3) signature: #{signature}"
-        define_element_accessor(identifier, signature, element, &block)
+        define_element_accessor(identifier, signature, element, &context)
       end
     end
 
@@ -39,6 +43,26 @@ module Tapestry
     # locator.
     def parse_signature(signature)
       [signature.shift, signature.shift]
+    end
+
+    # Returns the block or proc that serves as a context for an element
+    # definition. Consider the following element definitions:
+    #
+    #    ul   :facts, id: 'fact-list'
+    #    span :fact, -> { facts.span(class: 'site-item')}
+    #
+    # Here the second element definition provides a proc that contains a
+    # context for another element definition. That leads to the following
+    # construction being sent to the browser:
+    #
+    #    @browser.ul(id: 'fact-list').span(class: 'site-item')
+    def context_from_signature(*signature, &block)
+      if block_given?
+        block
+      else
+        context = signature.shift
+        context.is_a?(Proc) && signature.empty? ? context : nil
+      end
     end
 
     # This method provides the means to get the aspects of an accessor
