@@ -1,4 +1,11 @@
 require "bundler/setup"
+
+require "simplecov"
+
+SimpleCov.start do
+  add_filter "/spec/"
+end
+
 require "tapestry"
 
 RSpec.configure do |config|
@@ -11,4 +18,15 @@ RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
+end
+
+RSpec.configure do |config|
+  RSpec.shared_context :interface do
+    let(:watir_browser)  { mock_driver }
+    let(:page_interface) { ValidPage.new(watir_browser) }
+  end
+end
+
+Dir['spec/fixtures/**/*.rb'].each do |file|
+  require file.sub(/spec\//, '')
 end

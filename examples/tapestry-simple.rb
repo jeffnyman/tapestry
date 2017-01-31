@@ -24,8 +24,8 @@ class Home
   #element :login,      id: "login-button"
 end
 
-browser.goto("http://localhost:9292")
 page = Home.new(browser)
+page.visit("http://localhost:9292")
 page.login_form.click
 page.username.set "admin"
 page.password(id: 'password').set "admin"
