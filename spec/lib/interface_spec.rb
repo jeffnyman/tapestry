@@ -9,5 +9,17 @@ RSpec.describe Tapestry::Interface::Page do
       page_interface.view('http://localhost:9292')
       page_interface.visit('http://localhost:9292')
     end
+
+    it 'allows navigation to a page based on the url_is attribute' do
+      expect(watir_browser).to receive(:goto).exactly(4).times
+      page_interface.navigate_to
+      page_interface.goto
+      page_interface.view
+      page_interface.visit
+    end
+
+    it 'provides a url_attribute for a url_is value' do
+      expect(page_interface.url_attribute).to eq('http://localhost:9292')
+    end
   end
 end

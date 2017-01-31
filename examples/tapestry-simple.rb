@@ -27,7 +27,12 @@ class Home
 end
 
 page = Home.new(browser)
-page.visit("http://localhost:9292")
+
+# You can specify a URL to visit or you can rely on the provided
+# url_is attribute on the page definition.
+#page.visit("http://localhost:9292")
+page.visit
+
 page.login_form.click
 page.username.set "admin"
 page.password(id: 'password').set "admin"
