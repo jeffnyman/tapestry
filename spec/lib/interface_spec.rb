@@ -21,5 +21,9 @@ RSpec.describe Tapestry::Interface::Page do
     it 'provides a url_attribute for a url_is value' do
       expect(page_interface.url_attribute).to eq('http://localhost:9292')
     end
+
+    it 'provides an exception when no url is provided and a visit is attempted' do
+      expect { empty_interface.visit }.to raise_error Tapestry::Errors::NoUrlForDefinition
+    end
   end
 end

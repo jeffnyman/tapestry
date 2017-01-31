@@ -24,10 +24,26 @@ RSpec.configure do |config|
   RSpec.shared_context :interface do
     let(:watir_browser)        { mock_driver }
     let(:interface_definition) { ValidPage }
+    let(:empty_interface)      { EmptyInterface.new(watir_browser) }
     let(:page_interface)       { ValidPage.new(watir_browser) }
   end
 end
 
 Dir['spec/fixtures/**/*.rb'].each do |file|
   require file.sub(/spec\//, '')
+end
+
+RSpec.configure do |config|
+  original_stderr = $stderr
+  original_stdout = $stdout
+
+  config.before(:all) do
+    $stderr = File.new(File.join(File.dirname(__FILE__), 'reports/testable-output.txt'), 'w')
+    $stdout = File.new(File.join(File.dirname(__FILE__), 'reports/testable-output.txt'), 'w')
+  end
+
+  config.after(:all) do
+    $stderr = original_stderr
+    $stdout = original_stdout
+  end
 end
