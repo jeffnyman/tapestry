@@ -19,11 +19,21 @@ class Home
   text_field :username,   id: "username"
   text_field :password
   button     :login,      id: "login-button"
+  div        :message,    class: 'notice'
 
   #element :login_form, id: "open", visible: true
   #element :username,   id: "username"
   #element :password
   #element :login,      id: "login-button"
+end
+
+class Navigation
+  include Tapestry
+
+  p     :page_list,     id: 'navlist'
+  link  :planets,       id: 'planets'
+
+  image :planet_logo,   id: 'planet-logo'
 end
 
 page = Home.new(browser)
@@ -37,5 +47,11 @@ page.login_form.click
 page.username.set "admin"
 page.password(id: 'password').set "admin"
 page.login.click
+expect(page.message.text).to eq('You are now logged in as admin.')
+
+page = Navigation.new(browser)
+page.page_list.click
+page.planets.click
+expect(page.planet_logo.exists?).to be true
 
 browser.quit()
