@@ -13,6 +13,8 @@ browser = Watir::Browser.new
 class Home
   include Tapestry
 
+  url_is "http://localhost:9292"
+
   p          :login_form, id: "open", visible: true
   text_field :username,   id: "username"
   text_field :password
