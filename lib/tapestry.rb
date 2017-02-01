@@ -5,6 +5,7 @@ require "tapestry/interface"
 require "tapestry/attribute"
 
 require "tapestry/extensions/dom_observer"
+require "tapestry/extensions/data_setter"
 
 require "watir"
 
@@ -14,6 +15,7 @@ module Tapestry
     caller.extend Tapestry::Interface::Page::Attribute
     caller.__send__ :include, Tapestry::Locator
     caller.__send__ :include, Tapestry::Interface::Page
+    caller.__send__ :include, Tapestry::DataSetter
   end
 
   def initialize(browser = nil, &block)

@@ -27,6 +27,10 @@ RSpec.configure do |config|
     let(:empty_interface)      { EmptyInterface.new(watir_browser) }
     let(:page_interface)       { ValidPage.new(watir_browser) }
   end
+
+  RSpec.shared_context :element do
+    let(:watir_element) { double('element') }
+  end
 end
 
 Dir['spec/fixtures/**/*.rb'].each do |file|

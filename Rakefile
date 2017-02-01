@@ -18,6 +18,11 @@ namespace :script do
   task :factory do
     system("ruby ./examples/tapestry-factory.rb")
   end
+
+  desc "Run the Tapestry data setter script"
+  task :data_set do
+    system("ruby ./examples/tapestry-data-set.rb")
+  end
 end
 
 namespace :spec do
