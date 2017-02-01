@@ -5,6 +5,7 @@ require "rspec"
 include RSpec::Matchers
 
 require "tapestry"
+include Tapestry::Factory
 
 puts Tapestry::VERSION
 
@@ -34,24 +35,22 @@ class Navigation
   image :planet_logo,   id: 'planet-logo'
 end
 
-Tapestry.start_browser
+Tapestry.set_browser :chrome
 
-page = Home.new
+on_view(Home)
 
-# You can specify a URL to visit or you can rely on the provided
-# url_is attribute on the page definition.
-#page.visit("http://localhost:9292")
-page.visit
+on(Home) do
+  @context.login_form.click
+  @context.username.set "admin"
+  @context.password(id: 'password').set "admin"
+  @context.login.click
+  expect(@context.message.text).to eq('You are now logged in as admin.')
+end
 
-page.login_form.click
-page.username.set "admin"
-page.password(id: 'password').set "admin"
-page.login.click
-expect(page.message.text).to eq('You are now logged in as admin.')
-
-page = Navigation.new
-page.page_list.wait_until(&:dom_updated?).click
-page.planets.click
-expect(page.planet_logo.exists?).to be true
+on(Navigation) do
+  @context.page_list.wait_until(&:dom_updated?).click
+  @context.planets.click
+  expect(@context.planet_logo.exists?).to be true
+end
 
 Tapestry.quit_browser

@@ -13,6 +13,11 @@ namespace :script do
   task :simple do
     system("ruby ./examples/tapestry-simple.rb")
   end
+
+  desc "Run the Tapestry factory script"
+  task :factory do
+    system("ruby ./examples/tapestry-factory.rb")
+  end
 end
 
 namespace :spec do

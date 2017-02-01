@@ -57,6 +57,7 @@ You can also install Tapestry just as you would any other gem:
 Probably the best way to get a feel for the current state of the code is to look at the examples:
 
 * [Simple script](https://github.com/jeffnyman/tapestry/blob/master/examples/tapestry-simple.rb)
+* [Factory script](https://github.com/jeffnyman/tapestry/blob/master/examples/tapestry-factory.rb)
 
 You'll see references to "Veilus" and a "localhost" in the script. I'm using my own [Veilus application](https://veilus.herokuapp.com/). As far as the localhost, you can use the [Veilus repo](https://github.com/jeffnyman/veilus) to get a local copy to play around with.
 
