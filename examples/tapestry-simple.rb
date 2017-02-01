@@ -50,7 +50,7 @@ page.login.click
 expect(page.message.text).to eq('You are now logged in as admin.')
 
 page = Navigation.new(browser)
-page.page_list.click
+page.page_list.wait_until(&:dom_updated?).click
 page.planets.click
 expect(page.planet_logo.exists?).to be true
 

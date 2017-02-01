@@ -3,6 +3,8 @@ require "tapestry/element"
 require "tapestry/interface"
 require "tapestry/attribute"
 
+require "tapestry/extensions/dom_observer"
+
 require "watir"
 
 module Tapestry
