@@ -31,6 +31,8 @@ RSpec.configure do |config|
   RSpec.shared_context :element do
     let(:watir_element) { double('element') }
   end
+
+  config.alias_it_should_behave_like_to :provides_an, 'when providing an'
 end
 
 Dir['spec/fixtures/**/*.rb'].each do |file|
