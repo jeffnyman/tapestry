@@ -24,7 +24,15 @@ module Tapestry
     instance_eval(&block) if block
   end
 
+  # This accessor is needed so that internal API calls, like `markup` or
+  # `text`, have access to the browser instance. This is an instance-level
+  # access to the browser.
+  attr_accessor :browser
+
   class << self
+    # This accessor is needed so that Tapestry itself can provide a browser
+    # reference to indicate connection to WebDriver. This is a class-level
+    # access to the browser.
     attr_accessor :browser
 
     def set_browser(app = :chrome, *args)
