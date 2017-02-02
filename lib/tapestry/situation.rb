@@ -35,6 +35,20 @@ module Tapestry
       raise Tapestry::Errors::NoUrlMatchPossible
     end
 
+    def title_is_empty
+      puts "PROBLEM: title_is attribute empty.\n" \
+      "The title_is attribute is empty on the definition " \
+      "'#{retrieve_class(caller)}'.\n\n"
+      raise Tapestry::Errors::NoTitleForDefinition
+    end
+
+    def no_title_is_provided
+      puts "PROBLEM: No title provided.\n" \
+      "You called a '#{retrieve_method(caller)}' action but the " \
+      "definition '#{self.class}' does not have a title_is attribute.\n\n"
+      raise Tapestry::Errors::NoTitleForDefinition
+    end
+
     def retrieve_class(caller)
       caller[1][/`.*'/][8..-3]
     end

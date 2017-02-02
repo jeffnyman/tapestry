@@ -3,6 +3,7 @@ class ValidPage
 
   url_is 'http://localhost:9292'
   url_matches /:\d{4}/
+  title_is 'Veilus'
 
   %w(text_field button buttons file_field textarea select_list checkbox p div link element).each do |element|
     send element, :"#{element}", id: element

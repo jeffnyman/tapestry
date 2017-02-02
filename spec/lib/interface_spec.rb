@@ -22,11 +22,18 @@ RSpec.describe Tapestry::Interface::Page do
     end
 
     it 'provides a url_attribute for a url_is value' do
+      expect(page_interface).to respond_to :url_attribute
       expect(page_interface.url_attribute).to eq('http://localhost:9292')
     end
 
     it 'provides a url_match_attribute for a url_matches value' do
+      expect(page_interface).to respond_to :url_match_attribute
       expect(page_interface.url_match_attribute).to eq(/:\d{4}/)
+    end
+
+    it 'provides a title_attribute for a title_is value' do
+      expect(page_interface).to respond_to :title_attribute
+      expect(page_interface.title_attribute).to eq('Veilus')
     end
 
     it 'verifies a url if the url_matches assertion has been set' do
@@ -38,6 +45,17 @@ RSpec.describe Tapestry::Interface::Page do
     it 'does not verify a url if the url does not match the url_matches assertion' do
       expect(watir_browser).to receive(:url).and_return('http://127.0.0.1')
       expect(page_interface.has_correct_url?).to be_falsey
+    end
+
+    it 'verifies a title if the title_is assertion has been set' do
+      expect(watir_browser).to receive(:title).twice.and_return 'Veilus'
+      expect { page_interface.has_correct_title? }.not_to raise_error
+      expect(page_interface.has_correct_title?).to be_truthy
+    end
+
+    it 'does not verify a title if the title does not match the title_is assertion' do
+      expect(watir_browser).to receive(:title).and_return('Page Title')
+      expect(page_interface.has_correct_title?).to be_falsey
     end
 
     it 'checks if a page is displayed' do

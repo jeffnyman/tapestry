@@ -18,12 +18,21 @@ module Tapestry
           @url_match = pattern
         end
 
+        def title_is(title = nil)
+          title_is_empty if title.nil? || title.empty?
+          @title = title
+        end
+
         def url_attribute
           @url
         end
 
         def url_match_attribute
           @url_match
+        end
+
+        def title_attribute
+          @title
         end
       end
     end

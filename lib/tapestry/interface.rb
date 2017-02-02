@@ -39,6 +39,14 @@ module Tapestry
         value
       end
 
+      # A call to `title_attribute` returns what the value of the `title_is`
+      # attribute is for the given definition. It's important to note that
+      # this is not grabbing the title that is displayed in the browser;
+      # rather it's the one declared in the interface, if any.
+      def title_attribute
+        self.class.title_attribute
+      end
+
       # A call to `has_correct_url?`returns true or false if the actual URL
       # found in the browser matches the `url_matches` assertion. This is
       # important to note. It's not using the `url_is` attribute nor the URL
@@ -51,6 +59,15 @@ module Tapestry
       end
 
       alias displayed? has_correct_url?
+
+      # A call to `has_correct_title?` returns true or false if the actual
+      # title of the current page in the browser matches the `title_is`
+      # attribute. Notice that this check is done as part of a match rather
+      # than a direct check. This allows for regular expressions to be used.
+      def has_correct_title?
+        no_title_is_provided if title_attribute.nil?
+        !title.match(title_attribute).nil?
+      end
 
       # A call to `secure?` returns true if the page is secure and false
       # otherwise. This is a simple check that looks for whether or not the
