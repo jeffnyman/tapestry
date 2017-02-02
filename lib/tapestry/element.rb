@@ -24,14 +24,8 @@ module Tapestry
     # element definition.
     Tapestry.elements.each do |element|
       define_method(element) do |*signature, &block|
-        puts "(1) signature: #{signature}"
         identifier, signature = parse_signature(signature)
-
         context = context_from_signature(signature, &block)
-        puts "(1.5) context: #{context}"
-
-        puts "(2) identifier: #{identifier}"
-        puts "(3) signature: #{signature}"
         define_element_accessor(identifier, signature, element, &context)
       end
     end
@@ -83,11 +77,9 @@ module Tapestry
     # Note that "qualifiers" here refers to Watir boolean methods.
     def accessor_aspects(element, *signature)
       identifier = signature.shift
-      puts "(4) identifier: #{identifier}"
       locator_args = {}
       qualifier_args = {}
       gather_aspects(identifier, element, locator_args, qualifier_args)
-      puts "(5) QUAL/LOC: #{[locator_args, qualifier_args]}"
       [locator_args, qualifier_args]
     end
 
@@ -179,15 +171,11 @@ module Tapestry
     # like this: ["Drag and Drop"].
     def define_element_accessor(identifier, *signature, element, &block)
       locators, qualifiers = accessor_aspects(element, signature)
-      puts "(6) locators: #{locators}"
-      puts "(7) qualifiers: #{qualifiers}"
       define_method(identifier.to_s) do |*values|
         if block_given?
           instance_exec(*values, &block)
         else
-          puts "(8) values: #{values}"
           locators = values[0] if locators.empty?
-          puts "(9) locators: #{locators} | empty? #{locators.empty?}"
           access_element(element, locators, qualifiers)
         end
       end
