@@ -60,3 +60,9 @@ Metrics/MethodLength:
 # Encourage fewer parameters.
 Metrics/ParameterLists:
   Max: 4
+
+# Allow methods with has_ for predicates.
+Style/PredicateName:
+  NameWhitelist:
+    - has_correct_url?
+    - has_correct_title?

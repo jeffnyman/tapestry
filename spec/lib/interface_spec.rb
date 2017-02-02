@@ -25,6 +25,26 @@ RSpec.describe Tapestry::Interface::Page do
       expect(page_interface.url_attribute).to eq('http://localhost:9292')
     end
 
+    it 'provides a url_match_attribute for a url_matches value' do
+      expect(page_interface.url_match_attribute).to eq(/:\d{4}/)
+    end
+
+    it 'verifies a url if the url_matches assertion has been set' do
+      expect(watir_browser).to receive(:url).twice.and_return('http://localhost:9292')
+      expect { page_interface.has_correct_url? }.not_to raise_error
+      expect(page_interface.has_correct_url?).to be_truthy
+    end
+
+    it 'does not verify a url if the url does not match the url_matches assertion' do
+      expect(watir_browser).to receive(:url).and_return('http://127.0.0.1')
+      expect(page_interface.has_correct_url?).to be_falsey
+    end
+
+    it 'checks if a page is displayed' do
+      expect(watir_browser).to receive(:url).and_return('http://localhost:9292')
+      page_interface.displayed?
+    end
+
     it 'provides an exception when no url is provided and a visit is attempted' do
       expect { empty_interface.visit }.to raise_error Tapestry::Errors::NoUrlForDefinition
     end

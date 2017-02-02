@@ -15,7 +15,8 @@ puts Tapestry.recognizes?("div")
 class Home
   include Tapestry
 
-  url_is "http://localhost:9292"
+  url_is "http://localhost:9292/"
+  url_matches /:\d{4}/
 
   # Elements can be defined with HTML-style names as found in Watir.
   p          :login_form, id: "open", visible: true
@@ -48,12 +49,24 @@ expect(Tapestry.browser).to be_an_instance_of(Watir::Browser)
 expect(Tapestry.browser.driver).to be_an_instance_of(Selenium::WebDriver::Driver)
 
 expect(page).to be_a_kind_of(Tapestry)
-expect(page).to be_an_instance_of(Veilus)
+expect(page).to be_an_instance_of(Home)
 
 # You can specify a URL to visit or you can rely on the provided
 # url_is attribute on the page definition.
 #page.visit("http://localhost:9292")
 page.visit
+
+expect(page.url).to eq(page.url_attribute)
+expect(page.url).to match(page.url_match_attribute)
+
+expect(page.secure?).to be_falsey
+expect(page).not_to be_secure
+
+expect(page.has_correct_url?).to be_truthy
+expect(page).to have_correct_url
+
+expect(page.displayed?).to be_truthy
+expect(page).to be_displayed
 
 page.login_form.click
 page.username.set "admin"

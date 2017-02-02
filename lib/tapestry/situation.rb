@@ -20,6 +20,21 @@ module Tapestry
       raise Tapestry::Errors::NoUrlForDefinition
     end
 
+    def url_match_is_empty
+      puts "PROBLEM: url_matches attribute empty.\n" \
+      "The url_matches attribute is empty on the definition " \
+      "'#{retrieve_class(caller)}'.\n\n"
+      raise Tapestry::Errors::NoUrlMatchForDefinition
+    end
+
+    def no_url_match_is_possible
+      puts "PROBLEM: No url_is or url_matches attribute.\n" \
+      "You called a '#{retrieve_method(caller)}' action but the " \
+      "definition '#{self.class}' has no url_is attribute nor a " \
+      "url_matches attribute.\n\n"
+      raise Tapestry::Errors::NoUrlMatchPossible
+    end
+
     def retrieve_class(caller)
       caller[1][/`.*'/][8..-3]
     end
