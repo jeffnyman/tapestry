@@ -7,18 +7,24 @@ include RSpec::Matchers
 require "tapestry"
 
 puts Tapestry::VERSION
+puts Tapestry.version
+puts Tapestry.dependencies
+puts Tapestry.elements?
+puts Tapestry.recognizes?("div")
 
 class Home
   include Tapestry
 
   url_is "http://localhost:9292"
 
+  # Elements can be defined with HTML-style names as found in Watir.
   p          :login_form, id: "open", visible: true
   text_field :username,   id: "username"
   text_field :password
   button     :login,      id: "login-button"
   div        :message,    class: 'notice'
 
+  # Elements can be defined with a generic name.
   #element :login_form, id: "open", visible: true
   #element :username,   id: "username"
   #element :password
@@ -37,6 +43,12 @@ end
 Tapestry.start_browser
 
 page = Home.new
+
+expect(Tapestry.browser).to be_an_instance_of(Watir::Browser)
+expect(Tapestry.browser.driver).to be_an_instance_of(Selenium::WebDriver::Driver)
+
+expect(page).to be_a_kind_of(Tapestry)
+expect(page).to be_an_instance_of(Veilus)
 
 # You can specify a URL to visit or you can rely on the provided
 # url_is attribute on the page definition.

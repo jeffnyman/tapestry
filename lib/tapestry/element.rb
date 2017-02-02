@@ -5,6 +5,14 @@ module Tapestry
 
   NATIVE_QUALIFIERS = %i(visible).freeze
 
+  def elements?
+    @elements
+  end
+
+  def recognizes?(method)
+    @elements.include? method.to_sym
+  end
+
   def elements
     @elements = Watir::Container.instance_methods unless @elements
   end

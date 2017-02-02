@@ -43,4 +43,12 @@ RSpec.describe Tapestry::Element do
   include_context :element
 
   provides_an 'element method for', %w{text_field button buttons file_field textarea select_list checkbox p div link element}
+
+  it 'provides a way to get a list of accepted elements' do
+    expect(Tapestry.elements?).to include(:textarea)
+  end
+
+  it 'provides a way to check if an element is recognized' do
+    expect(Tapestry.recognizes?("div")).to be_truthy
+  end
 end
