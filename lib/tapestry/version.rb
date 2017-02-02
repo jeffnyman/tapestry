@@ -1,7 +1,7 @@
 module Tapestry
   module_function
 
-  VERSION = "0.1.0".freeze
+  VERSION = "0.2.0".freeze
 
   def version
     """

@@ -1,5 +1,11 @@
 # Tapestry
 
+[![Build Status](https://travis-ci.org/jeffnyman/tapestry.svg)](https://travis-ci.org/jeffnyman/tapestry)
+[![Gem Version](https://badge.fury.io/rb/tapestry.svg)](http://badge.fury.io/rb/tapestry)
+[![License](http://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/jeffnyman/tapestry/blob/master/LICENSE.md)
+
+[![Dependency Status](https://gemnasium.com/jeffnyman/tapestry.png)](https://gemnasium.com/jeffnyman/tapestry)
+
 > _Nature uses only the longest threads to weave her patterns, so that each
 > small piece of her fabric reveals the organization of the entire tapestry._
 >
