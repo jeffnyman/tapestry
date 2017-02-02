@@ -147,5 +147,24 @@ RSpec.describe Tapestry::Interface::Page do
       expect(watir_browser).to receive(:execute_script)
       page_interface.screen_height
     end
+
+    it 'gets a cookie value' do
+      cookie = [{:name => 'test', :value => 'cookie', :path => '/'}]
+      expect(watir_browser).to receive(:cookies).and_return(cookie)
+      expect(page_interface.get_cookie('test')).to eq('cookie')
+    end
+
+    it 'returns nothing if a cookie value is not found' do
+      cookie = [{:name => 'test', :value =>'cookie', :path => '/'}]
+      expect(watir_browser).to receive(:cookies).and_return(nil)
+      expect(page_interface.get_cookie('testing')).to be_nil
+    end
+
+    it 'clears all cookies from the browser' do
+      expect(watir_browser).to receive(:cookies).twice.and_return(watir_browser)
+      expect(watir_browser).to receive(:clear).twice
+      page_interface.remove_cookies
+      page_interface.clear_cookies
+    end
   end
 end

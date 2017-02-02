@@ -59,6 +59,7 @@ Probably the best way to get a feel for the current state of the code is to look
 * [Simple script](https://github.com/jeffnyman/tapestry/blob/master/examples/tapestry-simple.rb)
 * [Factory script](https://github.com/jeffnyman/tapestry/blob/master/examples/tapestry-factory.rb)
 * [Data Set script](https://github.com/jeffnyman/tapestry/blob/master/examples/tapestry-data-set.rb)
+* [Events script](https://github.com/jeffnyman/tapestry/blob/master/examples/tapestry-events.rb)
 
 You'll see references to "Veilus" and a "localhost" in the script. I'm using my own [Veilus application](https://veilus.herokuapp.com/). As far as the localhost, you can use the [Veilus repo](https://github.com/jeffnyman/veilus) to get a local copy to play around with.
 

@@ -181,6 +181,23 @@ module Tapestry
       def screen_height
         run_script("return screen.height;")
       end
+
+      # A call to `get_cookie` allows you to specify a particular cookie, by
+      # name, and return the information specified in the cookie.
+      def get_cookie(name)
+        browser.cookies.to_a.each do |cookie|
+          return cookie[:value] if cookie[:name] == name
+        end
+        nil
+      end
+
+      # A call to `clear_cookies` removes all the cookies from the current
+      # instance of the browser that is being controlled by WebDriver.
+      def clear_cookies
+        browser.cookies.clear
+      end
+
+      alias remove_cookies clear_cookies
     end
   end
 end
