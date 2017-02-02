@@ -54,6 +54,8 @@ module Tapestry
         @context.visit if visit
       end
 
+      verify_page(@context)
+
       yield @context if block
       @context
     end
@@ -73,5 +75,13 @@ module Tapestry
 
     alias on_page  on
     alias while_on on
+
+    private
+
+    def verify_page(context)
+      return if context.url_match_attribute.nil?
+      return if context.has_correct_url?
+      raise Tapestry::Errors::PageURLFromFactoryNotVerified
+    end
   end
 end
