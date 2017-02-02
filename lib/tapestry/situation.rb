@@ -49,6 +49,23 @@ module Tapestry
       raise Tapestry::Errors::NoTitleForDefinition
     end
 
+    def not_ready_validation(message)
+      puts "PROBLEM: A ready validation error was encountered.\n" \
+      "A ready validation failed to validate. The ready check was " \
+      "on the '#{self.class}' definition. " \
+      "The reason provided was:\n" \
+      "#{message}.\n\n"
+      raise Tapestry::Errors::PageNotValidatedError, message
+    end
+
+    def no_ready_check_possible
+      puts "PROBLEM: A when ready call has no action.\n" \
+      "You called a when_ready on a definition but did not provide " \
+      "any action for it. Add a block with logic that should be " \
+      "executed if the ready check passes.\n\n"
+      raise Tapestry::Errors::NoBlockForWhenReady
+    end
+
     def retrieve_class(caller)
       caller[1][/`.*'/][8..-3]
     end

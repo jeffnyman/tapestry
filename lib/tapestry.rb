@@ -3,6 +3,7 @@ require "tapestry/element"
 require "tapestry/factory"
 require "tapestry/interface"
 require "tapestry/attribute"
+require "tapestry/ready"
 
 require "tapestry/extensions/dom_observer"
 require "tapestry/extensions/data_setter"
@@ -14,6 +15,7 @@ module Tapestry
   def self.included(caller)
     caller.extend Tapestry::Element
     caller.extend Tapestry::Interface::Page::Attribute
+    caller.__send__ :include, Tapestry::Ready
     caller.__send__ :include, Tapestry::Locator
     caller.__send__ :include, Tapestry::Interface::Page
     caller.__send__ :include, Tapestry::DataSetter
