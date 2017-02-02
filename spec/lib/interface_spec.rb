@@ -137,5 +137,15 @@ RSpec.describe Tapestry::Interface::Page do
       page_interface.screenshot('testing.png')
       page_interface.save_screenshot('testing.png')
     end
+
+    it 'can return the screen width' do
+      expect(watir_browser).to receive(:execute_script)
+      page_interface.screen_width
+    end
+
+    it 'can return the screen height' do
+      expect(watir_browser).to receive(:execute_script)
+      page_interface.screen_height
+    end
   end
 end

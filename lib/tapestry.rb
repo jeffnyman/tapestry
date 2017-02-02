@@ -6,6 +6,7 @@ require "tapestry/attribute"
 
 require "tapestry/extensions/dom_observer"
 require "tapestry/extensions/data_setter"
+require "tapestry/extensions/watir_elements"
 
 require "watir"
 
@@ -21,6 +22,7 @@ module Tapestry
   def initialize(browser = nil, &block)
     @browser = Tapestry.browser unless Tapestry.browser.nil?
     @browser = browser if Tapestry.browser.nil?
+    begin_with if respond_to?(:begin_with)
     instance_eval(&block) if block
   end
 

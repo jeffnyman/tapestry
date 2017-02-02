@@ -167,6 +167,20 @@ module Tapestry
       end
 
       alias save_screenshot screenshot
+
+      # A call to `screen_width` returns the width of the browser screen as
+      # reported by the browser API, using a JavaScript call to the `screen`
+      # object.
+      def screen_width
+        run_script("return screen.width;")
+      end
+
+      # A call to `screen_height` returns the height of the browser screen as
+      # reported by the browser API, using a JavaScript call to the `screen`
+      # object.
+      def screen_height
+        run_script("return screen.height;")
+      end
     end
   end
 end

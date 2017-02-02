@@ -78,6 +78,11 @@ module Tapestry
 
     private
 
+    # This method is used to provide a means for checking if a page has been
+    # navigated to correctly as part of a context. This is useful because
+    # the context signature should remain highly readable, and checks for
+    # whether a given page has been reached would make the context definition
+    # look sloppy.
     def verify_page(context)
       return if context.url_match_attribute.nil?
       return if context.has_correct_url?

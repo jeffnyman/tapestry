@@ -40,6 +40,11 @@ class Navigation
   link  :planets,       id: 'planets'
 
   image :planet_logo,   id: 'planet-logo'
+
+  def begin_with
+    move_to(0, 0)
+    resize_to(screen_width, screen_height)
+  end
 end
 
 Tapestry.start_browser
