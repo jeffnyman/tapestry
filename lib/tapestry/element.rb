@@ -3,7 +3,7 @@ require "watir"
 module Tapestry
   module_function
 
-  NATIVE_QUALIFIERS = %i(visible).freeze
+  NATIVE_QUALIFIERS = %i[visible].freeze
 
   def elements?
     @elements

@@ -66,3 +66,7 @@ Style/PredicateName:
   NameWhitelist:
     - has_correct_url?
     - has_correct_title?
+
+# Remove execute permissions check.
+Lint/ScriptPermission:
+  Enabled: false

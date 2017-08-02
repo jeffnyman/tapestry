@@ -44,26 +44,32 @@ module Watir
     # to set your own value, which can be useful for particular sensitivities
     # in the application you are testing.
     def dom_updated?(delay: 1.1)
-      driver.manage.timeouts.script_timeout = delay + 1
-      driver.execute_async_script(DOM_OBSERVER, wd, delay)
-    rescue Selenium::WebDriver::Error::StaleElementReferenceError
-      # This situation can occur when the DOM changes between two calls to
-      # some element or aspect of the page. In this case, we are expecting
-      # the DOM to be different so what's being handled here are those hard
-      # to anticipate race conditions when "weird things happen" and DOM
-      # updating plus script execution get interleaved.
-      retry
-    rescue Selenium::WebDriver::Error::JavascriptError => e
-      # This situation can occur if the script execution has started before
-      # a new page is fully loaded. The specific error being checked for here
-      # is one that occurs when a new page is loaded as that page is trying
-      # to execute a JavaScript function.
-      retry if e.message.include?('document unloaded while waiting for result')
-      raise
-    ensure
-      # Note that this setting here means any user-defined timeout would
-      # effectively be overwritten.
-      driver.manage.timeouts.script_timeout = 1
+      element_call do
+        begin
+          driver.manage.timeouts.script_timeout = delay + 1
+          driver.execute_async_script(DOM_OBSERVER, wd, delay)
+        rescue Selenium::WebDriver::Error::StaleElementReferenceError
+          # This situation can occur when the DOM changes between two calls to
+          # some element or aspect of the page. In this case, we are expecting
+          # the DOM to be different so what's being handled here are those hard
+          # to anticipate race conditions when "weird things happen" and DOM
+          # updating plus script execution get interleaved.
+          retry
+        rescue Selenium::WebDriver::Error::JavascriptError => e
+          # This situation can occur if the script execution has started before
+          # a new page is fully loaded. The specific error being checked for
+          # here is one that occurs when a new page is loaded as that page is
+          # trying to execute a JavaScript function.
+          retry if e.message.include?(
+            'document unloaded while waiting for result'
+          )
+          raise
+        ensure
+          # Note that this setting here means any user-defined timeout would
+          # effectively be overwritten.
+          driver.manage.timeouts.script_timeout = 1
+        end
+      end
     end
 
     alias dom_has_updated? dom_updated?

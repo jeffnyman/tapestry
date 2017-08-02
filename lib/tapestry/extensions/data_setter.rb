@@ -66,6 +66,7 @@ module Tapestry
     alias use_data     using
     alias using_values using
     alias use_values   using
+    alias use          using
 
     private
 
