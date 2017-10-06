@@ -30,15 +30,15 @@ Style/SignalException:
   Enabled: false
 
 # This never works for validations.
-Style/AlignHash:
+Layout/AlignHash:
   EnforcedLastArgumentHashStyle: ignore_implicit
 
 # Align multi-line params with previous line.
-Style/AlignParameters:
+Layout/AlignParameters:
   EnforcedStyle: with_fixed_indentation
 
 # Indent `when` clause one step from `case`.
-Style/CaseIndentation:
+Layout/CaseIndentation:
   IndentOneStep: true
 
 # Don't force bad var names for reduce/inject loops.
@@ -46,7 +46,7 @@ Style/SingleLineBlockParams:
   Enabled: false
 
 # For method chains, keep the dot with the method name.
-Style/DotPosition:
+Layout/DotPosition:
   EnforcedStyle: leading
 
 # Stop nesting so hard.
@@ -62,7 +62,7 @@ Metrics/ParameterLists:
   Max: 4
 
 # Allow methods with has_ for predicates.
-Style/PredicateName:
+Naming/PredicateName:
   NameWhitelist:
     - has_correct_url?
     - has_correct_title?

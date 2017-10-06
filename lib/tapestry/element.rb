@@ -14,7 +14,7 @@ module Tapestry
   end
 
   def elements
-    @elements = Watir::Container.instance_methods unless @elements
+    @elements ||= Watir::Container.instance_methods unless @elements
   end
 
   module Element
