@@ -119,6 +119,12 @@ module Tapestry
 
       alias refresh_page refresh
 
+      # This method provides a means to maximize the browser window. This
+      # is done by getting the screen width and height via JavaScript calls.
+      def maximize
+        browser.window.resize_to(screen_width, screen_height)
+      end
+
       # This method provides a call to the browser window to resize that
       # window to the specified width and height values.
       def resize(width, height)
