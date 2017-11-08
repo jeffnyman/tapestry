@@ -206,11 +206,19 @@ module Tapestry
       alias remove_cookies clear_cookies
 
       def watir_api
-        puts Tapestry.browser.methods - Object.public_methods
+        Tapestry.browser.methods - Object.public_methods
       end
 
       def selenium_api
-        puts Tapestry.browser.driver.methods - Object.public_methods
+        Tapestry.browser.driver.methods - Object.public_methods
+      end
+
+      def api
+        self.methods - Object.public_methods
+      end
+
+      def definition_api
+        self.public_methods(false)
       end
     end
   end
