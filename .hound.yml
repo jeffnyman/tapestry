@@ -57,6 +57,10 @@ Metrics/BlockNesting:
 Metrics/MethodLength:
   Max: 15
 
+# Encourage short (as possible) modules.
+Metrics/ModuleLength:
+  Max: 105
+
 # Encourage fewer parameters.
 Metrics/ParameterLists:
   Max: 4

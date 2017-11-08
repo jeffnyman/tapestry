@@ -214,11 +214,11 @@ module Tapestry
       end
 
       def api
-        self.methods - Object.public_methods
+        methods - Object.public_methods
       end
 
       def definition_api
-        self.public_methods(false)
+        public_methods(false) - Object.public_methods
       end
     end
   end
