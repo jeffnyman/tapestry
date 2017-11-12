@@ -59,7 +59,7 @@ Metrics/MethodLength:
 
 # Encourage short (as possible) modules.
 Metrics/ModuleLength:
-  Max: 105
+  Max: 110
 
 # Encourage fewer parameters.
 Metrics/ParameterLists:
