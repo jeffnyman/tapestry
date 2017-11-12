@@ -209,6 +209,10 @@ module Tapestry
         Tapestry.browser.methods - Object.public_methods
       end
 
+      def watir_selectors
+        Watir::Container.instance_methods
+      end
+
       def selenium_api
         Tapestry.browser.driver.methods - Object.public_methods
       end
