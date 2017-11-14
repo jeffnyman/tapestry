@@ -8,10 +8,11 @@ module Tapestry
       # The `visit` method provides navigation to a specific page by passing
       # in the URL. If no URL is passed in, this method will attempt to use
       # the `url_is` attribute from the interface it is being called on.
-      def visit(url = nil)
+      def visit(url = nil, &block)
         no_url_provided if url.nil? && url_attribute.nil?
         @browser.goto(url) unless url.nil?
         @browser.goto(url_attribute) if url.nil?
+        when_ready(&block) if block_given?
         self
       end
 
