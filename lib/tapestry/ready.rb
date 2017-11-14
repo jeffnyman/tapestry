@@ -55,14 +55,16 @@ module Tapestry
     def when_ready(&_block)
       already_marked_ready = ready
 
-      no_ready_check_possible unless block_given?
+      #no_ready_check_possible unless block_given?
 
       self.ready = ready?
       not_ready_validation(ready_error || 'NO REASON PROVIDED') unless ready
-      yield self
+      yield self if block_given?
     ensure
       self.ready = already_marked_ready
     end
+
+    alias check_if_ready when_ready
 
     # The `ready?` method is used to check if the page has been loaded
     # successfully, which means that none of the ready validations have
