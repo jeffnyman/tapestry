@@ -78,11 +78,11 @@ RSpec.describe Tapestry::Ready do
   end
 
   context 'execution based on ready status' do
-    it 'requires a block to be processed' do
-      expect {
-        test_interface.new.when_ready
-      }.to raise_error Tapestry::Errors::NoBlockForWhenReady
-    end
+    # it 'requires a block to be processed' do
+    #  expect {
+    #    test_interface.new.when_ready
+    #  }.to raise_error Tapestry::Errors::NoBlockForWhenReady
+    # end
 
     it 'yields to a provided block when all ready validations pass' do
       test_interface.page_ready { true }

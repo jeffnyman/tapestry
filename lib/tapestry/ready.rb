@@ -55,7 +55,7 @@ module Tapestry
     def when_ready(&_block)
       already_marked_ready = ready
 
-      #no_ready_check_possible unless block_given?
+      # no_ready_check_possible unless block_given?
 
       self.ready = ready?
       not_ready_validation(ready_error || 'NO REASON PROVIDED') unless ready
