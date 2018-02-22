@@ -5,6 +5,7 @@ require "tapestry/interface"
 require "tapestry/attribute"
 require "tapestry/ready"
 
+require "tapestry/extensions/core_ruby"
 require "tapestry/extensions/dom_observer"
 require "tapestry/extensions/data_setter"
 require "tapestry/extensions/watir_elements"

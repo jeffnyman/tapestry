@@ -58,6 +58,7 @@ module Tapestry
       # no_ready_check_possible unless block_given?
 
       self.ready = ready?
+
       not_ready_validation(ready_error || 'NO REASON PROVIDED') unless ready
       yield self if block_given?
     ensure

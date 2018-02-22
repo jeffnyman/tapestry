@@ -228,6 +228,11 @@ module Tapestry
       else
         @browser.__send__(element, locators)
       end
+    rescue Watir::Exception::UnknownObjectException
+      return false if caller_locations.any? do |str|
+        str.to_s.match?("ready_validations_pass?")
+      end
+      raise
     end
   end
 end
