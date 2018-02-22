@@ -52,10 +52,12 @@ module Tapestry
     # here being that when a page has confirmed that it is ready, meaning that
     # no ready validations have failed, that information is stored so that any
     # subsequent calls to `ready?` do not query the ready validations again.
-    def when_ready(&_block)
+    def when_ready(simple_check = false, &_block)
       already_marked_ready = ready
 
-      # no_ready_check_possible unless block_given?
+      unless simple_check
+        no_ready_check_possible unless block_given?
+      end
 
       self.ready = ready?
 
@@ -65,7 +67,9 @@ module Tapestry
       self.ready = already_marked_ready
     end
 
-    alias check_if_ready when_ready
+    def check_if_ready
+      when_ready(true)
+    end
 
     # The `ready?` method is used to check if the page has been loaded
     # successfully, which means that none of the ready validations have
