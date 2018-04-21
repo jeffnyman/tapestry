@@ -36,6 +36,10 @@ Tapestry is built, as are all my test-supporting tools, on the idea that automat
 
 The code that a test-supporting micro-framework allows should be modular, promoting both high cohesion and low coupling, as well as promoting a single level of abstraction. These concepts together lead to lightweight design as well as support traits that make change affordable. That makes the automation code less expensive to maintain and easier to change. That, ultimately, has a positive impact on the cost of change.
 
+For code documentation, check out the [RDocs](http://www.rubydoc.info/github/jeffnyman/tapestry/frames).
+
+For insight into construction, check out [my Tapestry posts](http://testerstories.com/category/automation/tapestry/).
+
 ## Installation
 
 To get the latest stable release, add this line to your application's Gemfile:
