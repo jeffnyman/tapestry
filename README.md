@@ -6,6 +6,9 @@
 
 [![Dependency Status](https://gemnasium.com/jeffnyman/tapestry.png)](https://gemnasium.com/jeffnyman/tapestry)
 
+[![Yard Docs](http://img.shields.io/badge/yard-docs-blue.svg)](http://rubydoc.info/github/jeffnyman/tapestry/master/frames)
+[![Inline docs](http://inch-ci.org/github/jeffnyman/tapestry.png)](http://inch-ci.org/github/jeffnyman/github)
+
 > _Nature uses only the longest threads to weave her patterns, so that each
 > small piece of her fabric reveals the organization of the entire tapestry._
 >
@@ -35,8 +38,6 @@ The whole point of an abstraction layer is to smooth out the difficult and/or fi
 Tapestry is built, as are all my test-supporting tools, on the idea that automation should largely be small-footprint, low-fiction, high-yield.
 
 The code that a test-supporting micro-framework allows should be modular, promoting both high cohesion and low coupling, as well as promoting a single level of abstraction. These concepts together lead to lightweight design as well as support traits that make change affordable. That makes the automation code less expensive to maintain and easier to change. That, ultimately, has a positive impact on the cost of change.
-
-For code documentation, check out the [RDocs](http://www.rubydoc.info/github/jeffnyman/tapestry/frames).
 
 For insight into construction, check out [my Tapestry posts](http://testerstories.com/category/automation/tapestry/).
 
