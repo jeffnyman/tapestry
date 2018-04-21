@@ -136,8 +136,8 @@ module Tapestry
 
       # This method provides a call to the browser window to move the
       # window to the specified x and y screen coordinates.
-      def move_to(x, y)
-        browser.window.move_to(x, y)
+      def move_to(x_coord, y_coord)
+        browser.window.move_to(x_coord, y_coord)
       end
 
       # This method provides a call to the synchronous `execute_script`
